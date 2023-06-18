@@ -4,7 +4,6 @@ const errorHandler = (err, req, res, next) => {
     let error = { ...err }; // spread the error 
 
     error.message = err.message; // set error message 
-    console.log(error);
 
     // errors 
     // Mongoose error : cast error 
@@ -26,8 +25,6 @@ const errorHandler = (err, req, res, next) => {
     }
 
     res.status(error.statusCode || 500).json({ succes: false, error: error.message || "Item not found / server error" })
-    console.log('set from error handler')
-
 }
 
 export default errorHandler;
