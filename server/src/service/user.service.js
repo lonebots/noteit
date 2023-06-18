@@ -2,7 +2,6 @@ import userModel from "../model/user.model.js";
 
 // create user service 
 export async function createUser(input) {
-    console.log('create user start')
     return await userModel.create(input)
 }
 
