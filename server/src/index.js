@@ -4,6 +4,7 @@ import config from 'config'
 import logger from './utils/log.utils.js'
 import connectDB from './utils/connectDB.utils.js'
 import router from './routes/index.route.js'
+import errorHandler from './middleware/errorhandle.middleware.js'
 
 const app = express()
 // config
@@ -21,6 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // route
 app.use(router);
+
+// error handler 
+app.use(errorHandler);
 
 app.listen(port, host, (error) => {
     if (error) {
