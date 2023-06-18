@@ -1,0 +1,9 @@
+# build 
+node_modules
+
+# ide 
+vscode
+
+# environment
+.env
+config
