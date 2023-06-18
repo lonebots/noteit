@@ -1,10 +1,9 @@
 import express, { json } from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
+import cors from 'cors'
 import config from 'config'
 import logger from './utils/log.utils.js'
-// import { port, host } from './config/config.js'
 import connectDB from './utils/connectDB.utils.js'
+import router from './routes/index.route.js'
 
 const app = express()
 // config
@@ -16,16 +15,12 @@ const host = config.get('app.server.host');
 connectDB();
 
 // middleware
+app.use(cors()); // for cross origin request handling
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
-
-
-// console.log('privateKey .env : ', process.env.PRIVATE_KEY)
-
-app.get('/', (req, res) => {
-    res.send({ status: 200, message: "server looks good" });
-})
+// route
+app.use(router);
 
 app.listen(port, host, (error) => {
     if (error) {
