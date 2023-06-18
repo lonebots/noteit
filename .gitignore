@@ -1,0 +1,28 @@
+# dependencies
+**/node_modules
+**/.pnp
+**/.pnp.js
+
+# vscode
+.vscode
+
+# env
+**/.env*
+**/config
+
+# dependencies
+/node_modules
+
+# testing
+**/coverage
+
+# production
+**/build
+
+# logs
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# inspire
+inspire.txt 
