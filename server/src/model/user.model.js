@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import config from 'config';
+import bcrypt from 'bcrypt'; // for hashing
+
 
 // user schema
 const userSchema = new mongoose.Schema({
@@ -29,7 +32,20 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     });
 
-// TODO : hash the password before saving 
+// hash the password before saving 
+userSchema.pre('save', async function (next) {
+    // password not modified
+    if (!this.isModified('password')) {
+        return next();
+    }
+    // generate salt 
+    const salt = await bcrypt.genSalt(config.get('app.secret.saltworkfactor'));
+    const hashPassword = await bcrypt.hashSync(this.password, salt);
+    this.password = hashPassword;
+    return next();
+})
+
+// TODO : implement a method for comparing password 
 
 const userModel = mongoose.model("User", userSchema)
 
