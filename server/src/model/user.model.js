@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import config from 'config';
 import bcrypt from 'bcrypt'; // for hashing
-
+import logger from '../utils/log.utils.js'
 
 // user schema
 const userSchema = new mongoose.Schema({
@@ -45,7 +45,18 @@ userSchema.pre('save', async function (next) {
     return next();
 })
 
-// TODO : implement a method for comparing password 
+// compare password
+userSchema.methods.comparePasswords = async function (candidatePassword) {
+    console.log("candidatePassword : ", candidatePassword, "user password : ", this.password)
+    try {
+        logger.info('Password comparing...')
+        return await bcrypt.compare(this.password, candidatePassword);
+    }
+    catch (error) {
+        logger.error('Could not verify user', error);
+        return false;
+    }
+}
 
 const userModel = mongoose.model("User", userSchema)
 
