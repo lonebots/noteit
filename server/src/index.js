@@ -5,6 +5,7 @@ import logger from './utils/log.utils.js'
 import connectDB from './utils/connectDB.utils.js'
 import router from './routes/index.route.js'
 import errorHandler from './middleware/errorhandle.middleware.js'
+import networkLogs from './middleware/networklogger.middleware.js'
 
 const app = express()
 // config
@@ -21,10 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // route
+app.use(networkLogs);
 app.use(router);
 
-// error handler 
+// custom middleware
 app.use(errorHandler);
+
 
 app.listen(port, host, (error) => {
     if (error) {
