@@ -2,11 +2,11 @@ import config from 'config';
 import asyncHandler from "../middleware/async.middleware.js";
 import ErrorResponse from '../utils/errorResponse.utils.js'
 import { createUser, findUserbyEmail, findUserbyId } from '../service/user.service.js'
-import { signJWT } from '../utils/jwt.utils.js';
+import { signJWT, verifyJWT } from '../utils/jwt.utils.js';
 
 // secrets
-const accessTokenPrivateKey = config.get('app.secret.access-token-private-key');
-const accessTokenTtl = config.get('app.secret.access-token-ttl')
+const accessTokenSecretKey = config.get('app.secret.access-token-secret-key')
+const options = config.get('app.secret.jwt-options')
 
 // register user 
 export const registerUserHandler = asyncHandler(async (req, res, next) => {
@@ -31,7 +31,7 @@ export const registerUserHandler = asyncHandler(async (req, res, next) => {
     return res.status(200).send({ success: true, data: newUser })
 })
 
-// TODO : login user 
+// login user 
 export const loginUserHandler = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -55,8 +55,25 @@ export const loginUserHandler = asyncHandler(async (req, res, next) => {
 
     // generate access token and send back
     const payload = { id: user._id, name: user.username }
-    const accessToken = signJWT(payload, accessTokenPrivateKey, { expiresIn: accessTokenTtl })
+    const accessToken = signJWT(payload, accessTokenSecretKey, options)
     return res.status(200).json({ succes: true, accessToken: accessToken })
 })
 
-// TODO : verify user
+// verify user
+export const verifyUserHandler = asyncHandler(async (req, res, next) => {
+    const token = req.headers.authorization
+
+    // no token
+    if (!token) {
+        return next(new ErrorResponse('Authorization failed!', 400)); // bad request
+    }
+
+    const { valid, expired, decoded } = verifyJWT(token.split(" ")[1], accessTokenSecretKey, options);
+
+    if (valid) {
+        return res.status(200).json({ succes: true, valid: valid });
+    } else {
+        return res.status(400).json({ succes: false, valid: valid });
+    }
+
+})
