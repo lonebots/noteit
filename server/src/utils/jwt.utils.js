@@ -7,8 +7,7 @@ export const signJWT = (object, privateKey, options) => {
 
 export const verifyJWT = (token, publicKey) => {
     try {
-        const decoded = jwt.verify(token, publicKey);
-        logger.info("decoded : ", decoded)
+        const decoded = jwt.verify(token, publicKey)
         return {
             valid: true,
             expired: false,
