@@ -1,7 +1,7 @@
 import config from 'config';
 import asyncHandler from "../middleware/async.middleware.js";
 import ErrorResponse from '../utils/errorResponse.utils.js'
-import { createUser, findUserbyEmail, findUserbyId } from '../service/user.service.js'
+import { createUser, findUserbyEmail, validatePassword } from '../service/user.service.js'
 import { signJWT, verifyJWT } from '../utils/jwt.utils.js';
 
 // secrets
@@ -41,16 +41,9 @@ export const loginUserHandler = asyncHandler(async (req, res, next) => {
     }
 
     // find user and check if the passwords match 
-    const user = await findUserbyEmail(email);
-
+    const user = await validatePassword({ email, password })
     if (!user) {
         return next(new ErrorResponse('Invalid user credentials', 401)) // not found
-    }
-
-    // compare password and send a token
-    const isMatch = user.comparePasswords(password)
-    if (!isMatch) {
-        return next(new ErrorResponse('Incorrect password,please try again', 400)); // 400
     }
 
     // generate access token and send back

@@ -17,3 +17,18 @@ export async function findUserbyEmail(email) {
     return user;
 }
 
+// validating password 
+export async function validatePassword(input) {
+    const { email, password } = input;
+    const user = await findUserbyEmail(email)   // find user
+    if (!user) {
+        return false
+    }
+
+    const isValid = await user.comparePasswords(password);
+    console.log('is valid : ', isValid)
+    if (!isValid) {
+        return false
+    }
+    return user;
+}
