@@ -1,0 +1,14 @@
+/* general-styles */
+.App {
+  height: 100vh;
+}
+
+.centre {
+  display: flex;
+  margin: auto;
+}
+
+.link {
+  text-decoration: none;
+}
+
