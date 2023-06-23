@@ -4,12 +4,13 @@ import ErrorResponse from "../utils/errorResponse.utils.js";
 import { verifyJWT } from "../utils/jwt.utils.js";
 import asyncHandler from "./async.middleware.js";
 import { findUserbyId } from "../service/user.service.js";
+import { findNoteById } from "../service/note.service.js";
 
 // secrets
 const accessTokenSecretKey = config.get('app.secret.access-token-secret-key')
 const options = config.get('app.secret.jwt-options')
 
-const auth = asyncHandler(async (req, res, next) => {
+export const auth = asyncHandler(async (req, res, next) => {
     // grab the token
     const token = String(req.headers.authorization).split(" ")[1]
 
@@ -37,4 +38,13 @@ const auth = asyncHandler(async (req, res, next) => {
 
 })
 
-export default auth;
+// check if user has access to certain notes
+export const authorise = asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const note = await findNoteById(id);
+
+    if (!note || String(note.user_id) !== req.user.id) {
+        return next(new ErrorResponse("Unauthorised access", 401)) // unathorised access 
+    }
+    return next();
+})

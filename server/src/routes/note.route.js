@@ -1,6 +1,6 @@
 import express from 'express'
 import { createNoteHandler, getSingleNoteHandler, updateNoteHandler } from '../controller/note.controller.js'
-import auth from '../middleware/auth.middleware.js'
+import { auth, authorise } from '../middleware/auth.middleware.js'
 import { getAllNotesHandler } from '../controller/note.controller.js'
 import { deleteNoteHandler } from '../controller/note.controller.js'
 
@@ -13,8 +13,8 @@ noteRouter.route('/')
 
 // crud
 noteRouter.route('/:id')
-    .get(auth, getSingleNoteHandler)
-    .put(auth, updateNoteHandler)
-    .delete(auth,deleteNoteHandler)
+    .get(auth, authorise, getSingleNoteHandler)
+    .put(auth, authorise, updateNoteHandler)
+    .delete(auth, authorise, deleteNoteHandler)
 
 export default noteRouter
