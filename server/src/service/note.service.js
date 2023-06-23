@@ -23,5 +23,5 @@ export async function getAllNotesOf(userId) {
 
 // delete 
 export async function deleteNotebyId(id) {
-    return await noteModel.remove(id)
+    return await noteModel.deleteOne({ _id: id })
 }
