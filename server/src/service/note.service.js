@@ -16,7 +16,12 @@ export async function findNoteById(id) {
     return await noteModel.findById(id);
 }
 
-// find 
+// find all notes (using user_id)
 export async function getAllNotesOf(userId) {
     return await noteModel.find({ user_id: userId })
+}
+
+// delete 
+export async function deleteNotebyId(id) {
+    return await noteModel.remove(id)
 }
