@@ -10,3 +10,8 @@ export async function createNote(input) {
 export async function findByIdAndUpdate(id, updatedObject) {
     return await noteModel.findByIdAndUpdate(id, updatedObject)
 }
+
+// find by id 
+export async function findNoteById(id) {
+    return await noteModel.findById(id);
+}
