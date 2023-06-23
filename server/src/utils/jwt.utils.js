@@ -5,13 +5,13 @@ export const signJWT = (object, privateKey, options) => {
     return jwt.sign(object, privateKey, { ...options })
 }
 
-export const verifyJWT = (token, publicKey) => {
+export const verifyJWT = async (token, publicKey) => {
     try {
-        const decoded = jwt.verify(token, publicKey)
+        const decoded = await jwt.verify(token, publicKey)
         return {
             valid: true,
             expired: false,
-            decoded
+            decoded: decoded,
         }
     } catch (error) {
         logger.error(error.message)
