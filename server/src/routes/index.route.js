@@ -9,7 +9,7 @@ router.get('/health', (req, res) => {
 })
 
 // user related routes
-router.use(userRouter)
+router.use('/user', userRouter)
 
 export default router;
 
