@@ -15,3 +15,8 @@ export async function findByIdAndUpdate(id, updatedObject) {
 export async function findNoteById(id) {
     return await noteModel.findById(id);
 }
+
+// find 
+export async function getAllNotesOf(userId) {
+    return await noteModel.find({ user_id: userId })
+}
