@@ -6,7 +6,7 @@ const noteSchema = new mongoose.Schema({
     content: { type: String, required: [true, 'content is required'] },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     username: { type: String, required: [true, 'User name is required'] },
-    date: { type: date, default: Date.now() },
+    date: { type: Date, default: Date.now() },
 }, { timestamps: true })
 
 //model
