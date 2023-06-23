@@ -1,5 +1,5 @@
 import asyncHandler from "../middleware/async.middleware.js";
-import { createNote, findByIdAndUpdate, findNoteById } from "../service/note.service.js";
+import { createNote, findByIdAndUpdate, findNoteById, getAllNotesOf } from "../service/note.service.js";
 import ErrorResponse from "../utils/errorResponse.utils.js";
 
 // create note handler 
@@ -41,16 +41,28 @@ export const updateNoteHandler = asyncHandler(async (req, res, next) => {
 export const getSingleNoteHandler = asyncHandler(async (req, res, next) => {
     const { id } = req.params
 
-    const post = await findNoteById(id);
+    const note = await findNoteById(id);
 
-    if (!post) {
+    if (!note) {
         return next(new ErrorResponse("Post not found ", 404)); // page not foud
     }
 
-    return res.status(200).json({ success: true, data: post })
+    return res.status(200).json({ success: true, data: note })
 
+})
+
+// get all notes for a user 
+export const getAllNotesHandler = asyncHandler(async (req, res, next) => {
+    const userId = req.user.id;
+
+    const notes = await getAllNotesOf(userId);
+
+    if (!notes) {
+        return next(new ErrorResponse("No notes found for this user", 404));
+    }
+
+    return res.status(200).json({ success: true, data: notes })
 })
 
 // TODO : delete note handler 
 
-// TODO : get all notes for a user 
