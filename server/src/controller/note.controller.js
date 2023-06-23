@@ -1,9 +1,8 @@
 import asyncHandler from "../middleware/async.middleware.js";
-import { createNote } from "../service/note.service.js";
+import { createNote, findByIdAndUpdate } from "../service/note.service.js";
 import ErrorResponse from "../utils/errorResponse.utils.js";
 
-
-// creat note handler 
+// create note handler 
 export const createNoteHandler = asyncHandler(async (req, res, next) => {
     const { title, content, date } = req.body;
 
@@ -18,5 +17,24 @@ export const createNoteHandler = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse("Note creation failed", 400)); // bad request
     }
 
-    return res.status(200).json({ success: true, message: note });
+    return res.status(200).json({ success: true, data: note });
 })
+
+// update note handler 
+export const updateNoteHandler = asyncHandler(async (req, res, next) => {
+    const { id } = req.params
+    const { title, content, date } = req.body
+
+    if (!title || !content) {
+        return next(new ErrorResponse("Missing items title, content, date", 400)) // bad request
+    }
+
+    const updatedPost = await findByIdAndUpdate(id, { title: title, content: content, date: date })
+    if (!updatedPost) {
+        return next(new ErrorResponse("updating post failed", 500)) // server error
+    }
+
+    return res.status(200).json({ success: true, data: updatedPost })
+})
+
+// TODO : delete note handler 
