@@ -1,5 +1,5 @@
 import express from 'express'
-import { createNoteHandler, updateNoteHandler } from '../controller/note.controller.js'
+import { createNoteHandler, getSingleNoteHandler, updateNoteHandler } from '../controller/note.controller.js'
 import auth from '../middleware/auth.middleware.js'
 
 const noteRouter = express.Router()
@@ -8,6 +8,8 @@ const noteRouter = express.Router()
 noteRouter.route('/').post(auth, createNoteHandler)
 
 // crud
-noteRouter.route('/:id').put(auth, updateNoteHandler)
+noteRouter.route('/:id')
+    .get(auth, getSingleNoteHandler)
+    .put(auth, updateNoteHandler)
 
 export default noteRouter
