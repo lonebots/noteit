@@ -31,6 +31,8 @@ const auth = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse('Authorisation is not valid!', 401)) // unauthorised to access
     }
 
+    // set user 
+    req.user = user;
     return next();
 
 })
