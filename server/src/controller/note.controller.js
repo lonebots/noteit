@@ -1,5 +1,5 @@
 import asyncHandler from "../middleware/async.middleware.js";
-import { createNote, findByIdAndUpdate, findNoteById, getAllNotesOf } from "../service/note.service.js";
+import { createNote, deleteNotebyId, findByIdAndUpdate, findNoteById, getAllNotesOf } from "../service/note.service.js";
 import ErrorResponse from "../utils/errorResponse.utils.js";
 
 // create note handler 
@@ -64,5 +64,20 @@ export const getAllNotesHandler = asyncHandler(async (req, res, next) => {
     return res.status(200).json({ success: true, data: notes })
 })
 
-// TODO : delete note handler 
+// delete note handler
+export const deleteNoteHandler = asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+
+    if (!id) {
+        return next(new ErrorResponse("missing ID parameter", 400)) // bad request
+    }
+    const deletedNote = await deleteNotebyId(id);
+
+    if (!deletedNote) {
+        return next(new ErrorResponse("Unable to delete note, mising file", 404)) // not found
+    }
+
+    return res.status(200).json({ success: true, data: deletedNote })
+
+})
 

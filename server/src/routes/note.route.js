@@ -2,6 +2,7 @@ import express from 'express'
 import { createNoteHandler, getSingleNoteHandler, updateNoteHandler } from '../controller/note.controller.js'
 import auth from '../middleware/auth.middleware.js'
 import { getAllNotesHandler } from '../controller/note.controller.js'
+import { deleteNoteHandler } from '../controller/note.controller.js'
 
 const noteRouter = express.Router()
 
@@ -14,5 +15,6 @@ noteRouter.route('/')
 noteRouter.route('/:id')
     .get(auth, getSingleNoteHandler)
     .put(auth, updateNoteHandler)
+    .delete(auth,deleteNoteHandler)
 
 export default noteRouter
