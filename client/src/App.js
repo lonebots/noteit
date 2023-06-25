@@ -15,7 +15,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("access-token")
-    console.log("token : ", token)
     if (token) {
       setIsLogged(true)
     }
