@@ -31,7 +31,6 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { data } = await loginRequest()
-        console.log("data : ", data)
         if (data.success) {
             alert("Login success")
             localStorage.setItem("access-token", data.accessToken) // local storage set token

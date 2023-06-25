@@ -24,7 +24,7 @@ const errorHandler = (err, req, res, next) => {
         error = new ErrorResponse(message, 400) // bad request
     }
 
-    res.status(error.statusCode || 500).json({ succes: false, error: error.message || "Item not found / server error" })
+    res.status(error.statusCode || 500).json({ success: false, error: error.message || "Item not found / server error" })
 }
 
 export default errorHandler;
