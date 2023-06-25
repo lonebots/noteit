@@ -59,8 +59,6 @@ function AddNote() {
     navigate('/dash');
   }
 
-  // 
-
   return (
     <div className='add-note-container'>
       <h3>Add Note</h3>
