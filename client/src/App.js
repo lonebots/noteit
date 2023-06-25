@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './Components/Home/Home';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Nav from './Components/Nav/Nav';
@@ -11,7 +11,15 @@ import UpdateNote from './Components/Notes/UpdateNote';
 
 function App() {
 
-  const [isLogged, setIsLogged] = useState(true)
+  const [isLogged, setIsLogged] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem("access-token")
+    console.log("token : ", token)
+    if (token) {
+      setIsLogged(true)
+    }
+  }, [isLogged])
 
   return (
     <div className="App">
@@ -26,9 +34,9 @@ function App() {
       } */}
 
       <Routes>
-        <Route exact path="/user/new-note" element={<AddNote />} />
+        <Route exact path="/note/new" element={<AddNote />} />
         <Route path="/user/update-note/:id" element={<UpdateNote />} />
-        <Route path="/user/dashboard" element={<Dashboard />} />
+        <Route path="/dash" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />

@@ -4,16 +4,9 @@ import './Nav.css'
 
 function Nav({ isLogged, setIsLogged }) {
 
-    useEffect(() => {
-        
-    }, [isLogged])
-
-    console.log("BEGIN logout :", isLogged)
     const handleLogOut = () => {
-        // localStorage.clear();
-        console.log("before logout :", isLogged)
         setIsLogged(false);
-        console.log("after logout :", isLogged)
+        localStorage.removeItem("access-token")
     }
 
     return (
@@ -24,7 +17,7 @@ function Nav({ isLogged, setIsLogged }) {
             <ul className='nav-list'>
                 {isLogged ?
                     <>
-                        <li className='nav-list__item'> <a href='/user/new-note' className='link nav--link'>New</a></li>
+                        <li className='nav-list__item'> <a href='/note/new' className='link nav--link'>New</a></li>
                         <li className='nav-list__item' onClick={handleLogOut}> <a href='/' className='link nav--link'>LogOut</a></li>
                     </>
                     :
