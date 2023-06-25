@@ -49,7 +49,7 @@ export const loginUserHandler = asyncHandler(async (req, res, next) => {
     // generate access token and send back
     const payload = { id: user._id, name: user.username }
     const accessToken = signJWT(payload, accessTokenSecretKey, options)
-    return res.status(200).json({ succes: true, accessToken: accessToken })
+    return res.status(200).json({ success: true, accessToken: accessToken })
 })
 
 // verify user
