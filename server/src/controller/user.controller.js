@@ -54,19 +54,20 @@ export const loginUserHandler = asyncHandler(async (req, res, next) => {
 
 // verify user
 export const verifyUserHandler = asyncHandler(async (req, res, next) => {
-    const token = req.headers.authorization
+    const token = String(req.headers.authorization).split(" ")[1]
 
+    console.log("token : ", token)
     // no token
     if (!token) {
         return next(new ErrorResponse('Authorization failed!', 400)); // bad request
     }
 
-    const { valid, expired, decoded } = verifyJWT(token.split(" ")[1], accessTokenSecretKey, options);
+    const { valid, expired, decoded } = await verifyJWT(token, accessTokenSecretKey, options);
 
     if (valid) {
-        return res.status(200).json({ succes: true, valid: valid });
+        return res.status(200).json({ success: true, expired: expired, decoded: decoded });
     } else {
-        return res.status(400).json({ succes: false, valid: valid });
+        return res.status(400).json({ success: false, expired: expired, decoded: decoded });
     }
 
 })

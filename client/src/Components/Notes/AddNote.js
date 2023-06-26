@@ -5,6 +5,7 @@ import url from '../../API/Url';
 import axios from 'axios';
 
 function AddNote() {
+  console.log("ADD NOTE RENDERED")
   const navigate = useNavigate();
 
   // get default date (yyyy-mm-dd)

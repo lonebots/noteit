@@ -3,7 +3,8 @@ import axios from 'axios'
 import baseURL from '../../API/Url.js'
 import { useNavigate } from 'react-router-dom'
 
-function Login() {
+const Login = ({ setIsLogged, isLogged }) => {
+    console.log("LOGIN RENDERED")
     const navigate = useNavigate(); // navigation hook
     const [user, setUser] = useState({
         email: '',
@@ -27,13 +28,18 @@ function Login() {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { data } = await loginRequest()
+        console.log('data login : ', data)
         if (data.success) {
+            console.log("login islogged first : ", isLogged)
+            setIsLogged(true)
+            console.log("login islogged second : ", isLogged)
             alert("Login success")
-            localStorage.setItem("access-token", data.accessToken) // local storage set token
+            console.log("access-token : ", data.accessToken)
+            localStorage.setItem('access-token', data.accessToken)
+            localStorage.setItem('is-logged', true)
             navigate('/dash')
         }
         else {
