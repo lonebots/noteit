@@ -3,7 +3,7 @@ import url from '../../API/Url.js'
 import axios from 'axios'
 
 function Register() {
-
+    console.log("REGISTER RENDERED")
     const [user, setUser] = useState({
         username: '',
         email: '',

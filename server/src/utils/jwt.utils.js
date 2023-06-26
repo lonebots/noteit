@@ -5,9 +5,9 @@ export const signJWT = (object, privateKey, options) => {
     return jwt.sign(object, privateKey, { ...options })
 }
 
-export const verifyJWT = async (token, publicKey) => {
+export const verifyJWT = async (token, publicKey, options) => {
     try {
-        const decoded = await jwt.verify(token, publicKey)
+        const decoded = await jwt.verify(token, publicKey, { ...options })
         return {
             valid: true,
             expired: false,

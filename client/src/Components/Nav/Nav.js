@@ -7,6 +7,7 @@ function Nav({ isLogged, setIsLogged }) {
     const handleLogOut = () => {
         setIsLogged(false);
         localStorage.removeItem("access-token")
+        localStorage.setItem('is-logged', false)
     }
 
     return (
