@@ -40,14 +40,14 @@ const Dashboard = () => {
         }
         getNotes()
 
-    }, [])
+    }, [setNotes])
 
     return (
         <div className='dashboard-container'>
             <>Dashboard</>
             {notes &&
                 notes.map((note) => {
-                    return (<Note key={note._id} note={note} />
+                    return (<Note key={note._id} note={note} setNotes={setNotes} />
                     )
                 })
             }

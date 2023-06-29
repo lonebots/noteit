@@ -1,9 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Note.css'
 
 function Note({ note }) {
+  const navigate = useNavigate();
   const updateNote = () => {
-
+    navigate(`/user/update-note/${note._id}`)
   }
 
   const deleteNote = () => {

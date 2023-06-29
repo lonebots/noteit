@@ -1,18 +1,64 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import './Note.css'
+import url from '../../API/Url';
+import axios from 'axios';
 
-function UpdateNote() {
-    // get the id from query string 
-    const { id } = useParams()
+const UpdateNote = () => {
+    const navigate = useNavigate();
+    // header config
+    const config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }
+    };
 
+    // note 
     const [note, setNote] = useState({
         title: '',
         content: '',
         date: '',
-        id: '',
-
     })
+
+    // get the id from query string 
+    const { id } = useParams();
+
+    // get note - REQUEST
+    const getNoteRequest = async (id) => {
+        const baseURl = url + `/api/note/${id}`
+        try {
+            return await axios.get(baseURl, config);
+        } catch (error) {
+            return error.response
+        }
+    }
+
+    // update note - REQUEST
+    const updateNoteRequest = async (note) => {
+        const baseURL = url + `/api/note/${note._id}`;
+        try {
+            return await axios.put(baseURL, note, config);
+        } catch (error) {
+            return error.response;
+        }
+    }
+
+    useEffect(() => {
+        const getNote = async (id) => {
+            const { data } = await getNoteRequest(id);
+            if (data.success) {
+                const notedata = data.data;
+                setNote({
+                    ...notedata,
+                    date: notedata.date.split("T")[0]
+
+                })
+            }
+        }
+        getNote(id);
+    }, [id])
+
+
 
     const handleChange = (e) => {
         setNote({
@@ -21,9 +67,19 @@ function UpdateNote() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the default reloading of application
         console.log('click handle submit')
+        console.log("note : ", note)
+        const { data } = await updateNoteRequest(note);
+        if (data.success) {
+            alert("Note updated successfully")
+            console.log("note updated success :", data.data)
+            navigate('/dash')
+        }
+        else {
+            alert("Note update failed!, Please Try Again!")
+        }
     }
     return (
         <div className='add-note-container'>
@@ -42,7 +98,7 @@ function UpdateNote() {
                 <label htmlFor='date'>Date</label>
                 <input value={note.date} type="date" onChange={handleChange} name='date' />
             </div>
-            <button onSubmit={handleSubmit}>
+            <button onClick={handleSubmit}>
                 Update Note
             </button>
         </div>
