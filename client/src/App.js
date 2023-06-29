@@ -17,13 +17,16 @@ function App() {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged") || false)
 
+  // header config
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('access-token')}`
+    }
+  };
+
+
   const verifyrequest = async () => {
     const baseURL = url + '/user/verify'
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`
-      }
-    };
     try {
       return await axios.get(baseURL, config)
     } catch (error) {
@@ -31,14 +34,17 @@ function App() {
     }
   }
   console.log("islogged before useeffect : ", isLogged)
+
+  // to check if user is logged in 
   useEffect(() => {
     const checkLogin = async () => {
       const { data } = await verifyrequest();
-      console.log("data : ", data)
+      console.log("current user data : ", data)
       if (data.success && !data.expired) {
         console.log("logged in ")
         setIsLogged(true)
         localStorage.setItem('is-logged', true)
+        // navigate('/dash')
       } else {
         console.log("not logged in")
         localStorage.removeItem('access-token')
@@ -49,7 +55,7 @@ function App() {
     }
     checkLogin()
     console.log("islogged after useeffect : ", isLogged)
-  }, [isLogged, setIsLogged])
+  }, [])
 
   return (
     <div className="App">
