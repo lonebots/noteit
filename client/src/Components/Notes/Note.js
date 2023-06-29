@@ -10,10 +10,10 @@ function Note({ note }) {
 
   }
   return (
-    <div className='note-container' >
+    <div className='note-item' >
       <h4 className='note-title'>{note.title}</h4>
       <p className='note-content'>{note.content}</p>
-      <p className='note-time'>{note.time}</p>
+      <p className='note-time'>{note.date}</p>
       <button className='update-note' onClick={updateNote}>Update</button>
       <button className='delete-note' onClick={deleteNote}>Delete</button>
     </div>
