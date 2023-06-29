@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Dashboard = () => {
     console.log("dash component run")
-    const [notes, setNotes] = useState(null)
+    const [notes, setNotes] = useState([])
 
     // header config
     const config = {
@@ -44,12 +44,15 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard-container'>
-            <>Dashboard</>
-            {notes &&
+            {notes.length !== 0 ?
                 notes.map((note) => {
                     return (<Note key={note._id} note={note} setNotes={setNotes} />
                     )
                 })
+                :
+                <div>
+                    Start a new note!
+                </div>
             }
         </div>
     )
