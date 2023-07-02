@@ -1,6 +1,25 @@
 .home-container {
-  display: flex;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
+  height: 100%;
+  background-color: #1abc9c;
+}
+
+.home-container h1 {
+  font-family: 'Sigmar', cursive;
+  margin-top: 10%;
+  margin-left: 13%;
+  max-width: 200px;
+  max-height: 400px;
+  overflow: wrap;
+  color: white;
+  color: white;
+  font-size: 5rem;
+  line-height: 1.2;
+  letter-spacing: 0.2rem;
+}
+
+span {
+  white-space: nowrap;
+  font-size: 8rem;
+  text-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

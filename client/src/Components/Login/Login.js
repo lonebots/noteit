@@ -55,7 +55,7 @@ const Login = ({ setIsLogged, isLogged }) => {
             <input placeholder='Password' type='password' name="password" onChange={handleChange} />
             <button className='btn' onClick={handleSubmit} >Login</button>
             <div className='form__subtext'>
-                <p>Don't an account? <span className='nowrap'>please register <a href='/register'> here</a> </span></p>
+                <p>Don't an account? please register <a href='/register'> here</a></p>
             </div>
         </form >
     )
