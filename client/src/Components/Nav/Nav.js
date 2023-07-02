@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Nav.css'
+import logo from '../Assets/icon.png'
 
 function Nav({ isLogged, setIsLogged }) {
 
@@ -14,7 +15,7 @@ function Nav({ isLogged, setIsLogged }) {
         <div className='nav'>
             <div className='center nav-container'>
                 <div className='nav-header'>
-                    <h1> noteit</h1>
+                    <h1> noteit <img src={logo} alt='app-logo'  height="60"/></h1>
                 </div>
                 <ul className='nav-list'>
                     {isLogged ?

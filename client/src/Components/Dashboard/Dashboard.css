@@ -1,11 +1,10 @@
 .dashboard-container {
   display: flex;
-  margin: auto;
   justify-content: center;
   align-items: center;
 }
 
-.no-note{
+.no-note {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -51,10 +51,7 @@ const Dashboard = () => {
                     )
                 })
                 :
-                <div className='no-note'>
-                    <h2>Start a new note!</h2>
-                    <img src={dashImage} alt='add-new-note' height="300" width="300" />
-                </div>
+                <img src={dashImage} alt='add-new-note' height="190" width="190" />
             }
         </div>
     )
