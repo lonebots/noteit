@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import url from '../../API/Url.js'
 import axios from 'axios'
+import './Register.css'
 
 function Register() {
     console.log("REGISTER RENDERED")
@@ -39,18 +40,18 @@ function Register() {
     }
 
     return (
-        <div className='register-container'>
-            <h3>Start Making Notes!</h3>
-            <div className='register__form'>
+        <form className='register-container'>
+            <h2>Let's Noteit!</h2>
+            <div >
                 <input placeholder='Username' type='text' name='username' onChange={handleChange} />
                 <input placeholder='Email' type='email' name='email' onChange={handleChange} />
                 <input placeholder='Password' type='password' name='password' onChange={handleChange} />
                 <button className='btn' onClick={handleRegister}>Register</button>
-                <div className='login__subtext'>
+                <div className='form__subtext'>
                     <p>Already have an account? login <a href='/login'>here</a></p>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
 

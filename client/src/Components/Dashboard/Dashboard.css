@@ -4,3 +4,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.no-note{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

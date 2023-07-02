@@ -7,7 +7,7 @@ function Protected({ isLogged, children }) {
     isLogged = localStorage.getItem('is-logged')
     if (!isLogged) {
         return (
-            <Navigate to='/register' />
+            <Navigate to='/login' />
         )
     } else
         return children;

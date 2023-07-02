@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import Note from '../Notes/Note'
 import url from '../../API/Url'
 import axios from 'axios'
+import dashImage from '../Assets/dash-note.png'
 
 const Dashboard = () => {
     console.log("dash component run")
@@ -50,8 +51,9 @@ const Dashboard = () => {
                     )
                 })
                 :
-                <div>
-                    Start a new note!
+                <div className='no-note'>
+                    <h2>Start a new note!</h2>
+                    <img src={dashImage} alt='add-new-note' height="300" width="300" />
                 </div>
             }
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import baseURL from '../../API/Url.js'
 import { useNavigate } from 'react-router-dom'
+import './Login.css'
 
 const Login = ({ setIsLogged, isLogged }) => {
     console.log("LOGIN RENDERED")
@@ -48,17 +49,15 @@ const Login = ({ setIsLogged, isLogged }) => {
     }
 
     return (
-        <div className='login-container'>
-            <h3>welcome back!</h3>
-            <div className='login__form'>
-                <input placeholder='Email' type='email' name='email' onChange={handleChange} />
-                <input placeholder='Password' type='password' name="password" onChange={handleChange} />
-                <button className='btn' onClick={handleSubmit} >Login</button>
-            </div>
+        <form className='form'>
+            <h2>welcome back!</h2>
+            <input placeholder='Email' type='email' name='email' onChange={handleChange} />
+            <input placeholder='Password' type='password' name="password" onChange={handleChange} />
+            <button className='btn' onClick={handleSubmit} >Login</button>
             <div className='form__subtext'>
-                <p>Don't an account? please register <a href='/register'> here</a></p>
+                <p>Don't an account? <span className='nowrap'>please register <a href='/register'> here</a> </span></p>
             </div>
-        </div>
+        </form >
     )
 }
 

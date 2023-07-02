@@ -1,14 +1,32 @@
-/* general-styles */
-.App {
-  height: 100vh;
+/*css-reset*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.centre {
+.App {
+  min-height: 100vh;
+}
+
+.center {
   display: flex;
   margin: auto;
 }
 
 .link {
   text-decoration: none;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+/* UTILITY */
+.nowrap {
+  white-space: nowrap;
 }
 

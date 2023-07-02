@@ -83,7 +83,7 @@ const UpdateNote = () => {
     }
     return (
         <div className='add-note-container'>
-            <h3>Update Note</h3>
+            <h2>Update Note</h2>
             <div className='note-item'>
                 <label htmlFor='title' >Title</label>
                 <input type="text"
@@ -91,14 +91,14 @@ const UpdateNote = () => {
             </div>
             <div className='note-item'>
                 <label htmlFor='content'>Content</label>
-                <textarea type="text" value={note.content} onChange={handleChange} name='content' />
+                <textarea data-provide="markdown"  value={note.content} onChange={handleChange} name='content' />
             </div>
 
             <div className='note-item'>
                 <label htmlFor='date'>Date</label>
                 <input value={note.date} type="date" onChange={handleChange} name='date' />
             </div>
-            <button onClick={handleSubmit}>
+            <button className='btn' onClick={handleSubmit}>
                 Update Note
             </button>
         </div>

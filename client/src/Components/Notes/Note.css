@@ -2,21 +2,131 @@
 .update-note-container,
 .note-container {
   display: flex;
-  margin: 0em auto;
+  margin: 1em auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 50%;
+  width: 800px;
   height: 80vh;
 }
 
 .note-item {
   display: flex;
-  padding: 2em 0em;
+  padding: 0.3em 0em;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
 }
 
 .note-item > textarea {
   height: 20vh;
+}
+
+label {
+  font-size: 1.2rem;
+  color: darkgray;
+  cursor: pointer;
+}
+
+label,
+input {
+  float: left;
+  clear: both;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none; /*remove the resize handle on the bottom right*/
+}
+
+input,
+textarea {
+  margin: 15px 0;
+  padding: 15px 10px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -ms-transition: 0.2s ease all;
+  -o-transition: 0.2s ease all;
+  transition: 0.2s ease all;
+  text-decoration: none;
+}
+
+input[type="submit"] {
+  padding: 15px 50px;
+  width: auto;
+  background: #1abc9c;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+input[type="submit"]:active {
+  opacity: 0.4;
+}
+
+input,
+textarea,
+select {
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.4;
+  font-family: inherit;
+}
+
+/*NOTE*/
+.note {
+  display: flex;
+  flex-direction: column;
+  width: 750px;
+  font-size: 1.1rem;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0rem;
+  box-shadow: 1px 1px 5px #aaaaaa;
+  border-radius: 1.2rem;
+}
+
+.note h3 {
+  margin-bottom: 1rem;
+  color: #1abc9c;
+}
+
+.note p {
+  color: #595959;
+}
+
+.note-content {
+  padding: 1em;
+  /* border: 1px solid hsl(0, 0%, 87%); */
+  min-height: 100px;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.space {
+  margin-top: 1.4rem;
+  margin-left: 1em;
 }

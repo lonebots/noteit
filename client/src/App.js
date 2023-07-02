@@ -61,17 +61,16 @@ function App() {
     <div className="App">
 
       <Nav isLogged={isLogged} setIsLogged={setIsLogged} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path='/login' element={<Login setIsLogged={setIsLogged} isLogged={isLogged} />} />
-        <Route path='/register' element={<Register />} />
-        <Route path="/dash" element={<Protected isLogged={isLogged}><Dashboard /></Protected>} />
-        <Route exact path="/note/new" element={<Protected isLogged={isLogged}><AddNote /></Protected>} />
-        <Route path="/user/update-note/:id" element={<Protected isLogged={isLogged}><UpdateNote /> </Protected>} />
-
-
-      </Routes>
-
+      <div className='main'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path='/login' element={<Login setIsLogged={setIsLogged} isLogged={isLogged} />} />
+          <Route path='/register' element={<Register />} />
+          <Route path="/dash" element={<Protected isLogged={isLogged}><Dashboard /></Protected>} />
+          <Route exact path="/note/new" element={<Protected isLogged={isLogged}><AddNote /></Protected>} />
+          <Route path="/user/update-note/:id" element={<Protected isLogged={isLogged}><UpdateNote /> </Protected>} />
+        </Routes>
+      </div>
     </div>
   );
 }

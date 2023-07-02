@@ -35,12 +35,17 @@ function Note({ note }) {
     window.location.reload(true);
   }
   return (
-    <div className='note-item' >
-      <h4 className='note-title'>{note.title}</h4>
+    <div className='note' >
+      <div className='note-header' >
+        <h3 className='note-title'>{note.title}</h3>
+        <p className='note-time'>{note.date.split("T")[0]}</p>
+      </div>
       <p className='note-content'>{note.content}</p>
-      <p className='note-time'>{note.date}</p>
-      <button className='update-note' onClick={updateNote}>Update</button>
-      <button className='delete-note' onClick={deleteNote}>Delete</button>
+
+      <div className='btn-container'>
+        <button className='btn space' onClick={updateNote}>Update</button>
+        <button className='btn space' onClick={deleteNote}>Delete</button>
+      </div>
     </div>
   )
 }
