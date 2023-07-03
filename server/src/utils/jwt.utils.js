@@ -14,7 +14,7 @@ export const verifyJWT = async (token, publicKey, options) => {
             decoded: decoded,
         }
     } catch (error) {
-        logger.error(error.message)
+        // logger.error(error.message)
         return {
             valid: false,
             expired: error.message === 'jwt expired',

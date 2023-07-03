@@ -1,17 +1,18 @@
 import express, { json } from 'express'
 import cors from 'cors'
-import config from 'config'
 import logger from './utils/log.utils.js'
 import connectDB from './utils/connectDB.utils.js'
 import router from './routes/index.route.js'
 import errorHandler from './middleware/errorhandle.middleware.js'
 import networkLogs from './middleware/networklogger.middleware.js'
+import dotenv from 'dotenv'
 
+dotenv.config({ path: '.env' });
 const app = express()
 // config
-const protocol = config.get("app.server.protocol")
-const port = config.get('app.server.port');
-const host = config.get('app.server.host');
+const protocol = process.env.PROTOCOL;
+const port = process.env.PORT || 5000;
+const host = process.env.HOST;
 
 //db
 connectDB();
@@ -29,12 +30,12 @@ app.use(router);
 app.use(errorHandler);
 
 
-app.listen(port, host, (error) => {
+app.listen(port, (error) => {
     if (error) {
-        logger.error(error);
+        // logger.error(error);
         return process.exit(1);
     }
-    logger.info(`server @ ${protocol}://${host}:${port}`);
+    // logger.info(`server @ ${protocol}://${host}:${port}`);
 })
 
 export default app;

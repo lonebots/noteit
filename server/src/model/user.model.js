@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
-import config from 'config';
 import bcrypt from 'bcrypt'; // for hashing
 import logger from '../utils/log.utils.js'
+
+// salt-factor
+const saltWorkFactor = parseInt(process.env.SALTWORK_FACTOR);
 
 // user schema
 const userSchema = new mongoose.Schema({
@@ -39,7 +41,7 @@ userSchema.pre('save', async function (next) {
         return next();
     }
     // generate salt 
-    const salt = await bcrypt.genSalt(config.get('app.secret.saltworkfactor'));
+    const salt = await bcrypt.genSalt(saltWorkFactor);
     const hashPassword = await bcrypt.hashSync(this.password, salt);
     this.password = hashPassword;
     return next();
@@ -51,7 +53,7 @@ userSchema.methods.comparePasswords = async function (candidatePassword) {
         return await bcrypt.compare(candidatePassword, this.password);
     }
     catch (error) {
-        logger.error('Could not verify user', error);
+        // logger.error('Could not verify user', error);
         return false;
     }
 }

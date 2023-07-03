@@ -1,14 +1,21 @@
 // middleware to check for authorisation
-import config from "config";
 import ErrorResponse from "../utils/errorResponse.utils.js";
 import { verifyJWT } from "../utils/jwt.utils.js";
 import asyncHandler from "./async.middleware.js";
 import { findUserbyId } from "../service/user.service.js";
 import { findNoteById } from "../service/note.service.js";
+import dotenv from 'dotenv'
+dotenv.config()
 
 // secrets
-const accessTokenSecretKey = config.get('app.secret.access-token-secret-key')
-const options = config.get('app.secret.jwt-options')
+const accessTokenSecretKey = process.env.ACCESS_TOKEN_SECRET_KEY;
+const options = {
+    'issuer': process.env.JWT_OPTIONS_ISSUER,
+    'subject': process.env.JWT_OPTIONS_SUBJECT,
+    'audience': process.env.JWT_OPTIONS_AUDIENCE,
+    "expiresIn": process.env.JWT_OPTIONS_TOKEN_EXPIN,
+    "algorithm": process.env.JWT_OPTIONS_ALG
+}
 
 export const auth = asyncHandler(async (req, res, next) => {
     // grab the token

@@ -1,12 +1,19 @@
-import config from 'config';
 import asyncHandler from "../middleware/async.middleware.js";
 import ErrorResponse from '../utils/errorResponse.utils.js'
 import { createUser, findUserbyEmail, validatePassword } from '../service/user.service.js'
 import { signJWT, verifyJWT } from '../utils/jwt.utils.js';
+import dotenv from 'dotenv'
+dotenv.config()
 
 // secrets
-const accessTokenSecretKey = config.get('app.secret.access-token-secret-key')
-const options = config.get('app.secret.jwt-options')
+const accessTokenSecretKey = process.env.ACCESS_TOKEN_SECRET_KEY
+const options = {
+    'issuer': process.env.JWT_OPTIONS_ISSUER,
+    'subject': process.env.JWT_OPTIONS_SUBJECT,
+    'audience': process.env.JWT_OPTIONS_AUDIENCE,
+    "expiresIn": process.env.JWT_OPTIONS_TOKEN_EXPIN,
+    "algorithm": process.env.JWT_OPTIONS_ALG
+}
 
 // register user 
 export const registerUserHandler = asyncHandler(async (req, res, next) => {
@@ -55,7 +62,6 @@ export const loginUserHandler = asyncHandler(async (req, res, next) => {
 // verify user
 export const verifyUserHandler = asyncHandler(async (req, res, next) => {
     const token = String(req.headers.authorization).split(" ")[1]
-
     // no token
     if (!token) {
         return next(new ErrorResponse('Authorization failed!', 400)); // bad request

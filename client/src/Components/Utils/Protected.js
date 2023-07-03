@@ -1,9 +1,10 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Protected = ({ isLogged, children }) => {
+    const navigate = useNavigate()
     if (!isLogged) {
-        return <Navigate to='/login' />;
+        navigate('/login')
     } else {
         return children;
     }
