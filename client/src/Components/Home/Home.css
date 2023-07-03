@@ -2,14 +2,18 @@
   flex: 1;
   height: 100%;
   background-color: #1abc9c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
 }
 
 .home-container h1 {
-  font-family: 'Sigmar', cursive;
-  margin-top: 10%;
-  margin-left: 13%;
-  max-width: 200px;
-  max-height: 400px;
+  font-family: "Sigmar", cursive;
+  max-width: 50%;
+  max-height: fit-content;
+  justify-content: space-between;
+  align-items: center;
   overflow: wrap;
   color: white;
   color: white;
@@ -19,7 +23,16 @@
 }
 
 span {
-  white-space: nowrap;
+  white-space: wrap;
   font-size: 8rem;
   text-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+}
+
+.hero-animation {
+  width: 50%;
+}
+
+.hero-giffy {
+  display: inline-block;
 }

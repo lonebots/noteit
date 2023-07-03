@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import url from '../../API/Url.js'
 import axios from 'axios'
 import './Register.css'
 
+
 function Register() {
     console.log("REGISTER RENDERED")
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         username: '',
         email: '',
@@ -31,6 +34,8 @@ function Register() {
         const { data } = await registerUser();
         if (data.success) {
             alert("User registered successfully");
+            navigate('/login')
+
         }
         else {
             alert(`User registraction failed reason : ${data.error}`)

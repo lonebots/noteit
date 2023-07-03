@@ -15,7 +15,7 @@ function Nav({ isLogged, setIsLogged }) {
         <div className='nav'>
             <div className='center nav-container'>
                 <div className='nav-header'>
-                    <h1> noteit <img src={logo} alt='app-logo'  height="60"/></h1>
+                    <a href='/'><h1> noteit <img src={logo} alt='app-logo' height="60" /></h1></a>
                 </div>
                 <ul className='nav-list'>
                     {isLogged ?
