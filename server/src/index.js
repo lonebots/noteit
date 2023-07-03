@@ -36,3 +36,5 @@ app.listen(port, host, (error) => {
     }
     logger.info(`server @ ${protocol}://${host}:${port}`);
 })
+
+export default app;
