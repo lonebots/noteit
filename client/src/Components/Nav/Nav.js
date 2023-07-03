@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './Nav.css'
 import logo from '../Assets/icon.png'
 
 function Nav({ isLogged, setIsLogged }) {
-
+    const navigate = useNavigate()
     const handleLogOut = () => {
         setIsLogged(false);
         localStorage.removeItem("access-token")
         localStorage.setItem('is-logged', false)
+        navigate('/')
     }
 
     return (

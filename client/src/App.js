@@ -13,7 +13,6 @@ import axios from 'axios';
 import url from './API/Url';
 
 function App() {
-  console.log("APP RENDERED")
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged") || false)
 
@@ -24,7 +23,6 @@ function App() {
     }
   };
 
-
   const verifyrequest = async () => {
     const baseURL = url + '/user/verify'
     try {
@@ -33,28 +31,21 @@ function App() {
       return error.response
     }
   }
-  console.log("islogged before useeffect : ", isLogged)
 
   // to check if user is logged in 
   useEffect(() => {
     const checkLogin = async () => {
       const { data } = await verifyrequest();
-      console.log("current user data : ", data)
       if (data.success && !data.expired) {
-        console.log("logged in ")
         setIsLogged(true)
         localStorage.setItem('is-logged', true)
-        // navigate('/dash')
       } else {
-        console.log("not logged in")
         localStorage.removeItem('access-token')
         setIsLogged(false)
         localStorage.setItem('is-logged', false)
       }
-
     }
-    checkLogin()
-    console.log("islogged after useeffect : ", isLogged)
+    checkLogin();
   }, [])
 
   return (
@@ -63,7 +54,7 @@ function App() {
       <Nav isLogged={isLogged} setIsLogged={setIsLogged} />
       <div className='main'>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isLogged={isLogged} />} />
           <Route path='/login' element={<Login setIsLogged={setIsLogged} isLogged={isLogged} />} />
           <Route path='/register' element={<Register />} />
           <Route path="/dash" element={<Protected isLogged={isLogged}><Dashboard /></Protected>} />

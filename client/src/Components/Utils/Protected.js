@@ -1,17 +1,11 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-function Protected({ isLogged, children }) {
-    console.log("PROTECTED RENDERED")
-    console.log("protected islogged value : ", isLogged)
-    isLogged = localStorage.getItem('is-logged')
+const Protected = ({ isLogged, children }) => {
     if (!isLogged) {
-        return (
-            <Navigate to='/login' />
-        )
-    } else
+        return <Navigate to='/login' />;
+    } else {
         return children;
-
+    }
 }
-
 export default Protected

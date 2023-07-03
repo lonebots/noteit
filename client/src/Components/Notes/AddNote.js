@@ -5,7 +5,6 @@ import url from '../../API/Url';
 import axios from 'axios';
 
 function AddNote() {
-  console.log("ADD NOTE RENDERED")
   const navigate = useNavigate();
 
   // get default date (yyyy-mm-dd)
@@ -46,13 +45,10 @@ function AddNote() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(note)
 
     const { data } = await createNoteRequest()
-    console.log("data success : ", data.success)
     if (data.success) {
       alert('Note created');
-      console.log("data : ", data)
     }
     else {
       alert("Note not created");

@@ -5,7 +5,6 @@ import axios from 'axios'
 import dashImage from '../Assets/dash-note.png'
 
 const Dashboard = () => {
-    console.log("dash component run")
     const [notes, setNotes] = useState([])
 
     // header config
@@ -15,32 +14,25 @@ const Dashboard = () => {
         }
     };
 
-
     const getNotesRequest = async () => {
         const baseURL = url + "/api/note";
         try {
             return await axios.get(baseURL, config)
         } catch (error) {
-            console.log("note request error : ", error.response)
             return error.response
         }
-
     }
+
     // to get all user notes
     useEffect(() => {
-        console.log('dash useeffect run')
         const getNotes = async () => {
             const res = await getNotesRequest();
-            console.log("notes data : ", res.data);
             const Notes = res.data.data;
             if (res.data.success) {
                 setNotes(Notes)
             }
-
-            console.log("notes :", notes)
         }
         getNotes()
-
     }, [setNotes])
 
     return (

@@ -6,7 +6,6 @@ import './Register.css'
 
 
 function Register() {
-    console.log("REGISTER RENDERED")
     const navigate = useNavigate();
     const [user, setUser] = useState({
         username: '',
@@ -35,13 +34,10 @@ function Register() {
         if (data.success) {
             alert("User registered successfully");
             navigate('/login')
-
         }
         else {
             alert(`User registraction failed reason : ${data.error}`)
         }
-        console.log(data)
-
     }
 
     return (

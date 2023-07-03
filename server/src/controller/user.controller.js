@@ -56,7 +56,6 @@ export const loginUserHandler = asyncHandler(async (req, res, next) => {
 export const verifyUserHandler = asyncHandler(async (req, res, next) => {
     const token = String(req.headers.authorization).split(" ")[1]
 
-    console.log("token : ", token)
     // no token
     if (!token) {
         return next(new ErrorResponse('Authorization failed!', 400)); // bad request

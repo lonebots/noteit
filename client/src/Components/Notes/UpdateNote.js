@@ -58,8 +58,6 @@ const UpdateNote = () => {
         getNote(id);
     }, [id])
 
-
-
     const handleChange = (e) => {
         setNote({
             ...note,
@@ -69,12 +67,9 @@ const UpdateNote = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the default reloading of application
-        console.log('click handle submit')
-        console.log("note : ", note)
         const { data } = await updateNoteRequest(note);
         if (data.success) {
             alert("Note updated successfully")
-            console.log("note updated success :", data.data)
             navigate('/dash')
         }
         else {
