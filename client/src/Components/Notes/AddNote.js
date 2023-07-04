@@ -53,7 +53,7 @@ function AddNote() {
     else {
       alert("Note not created");
     }
-    navigate('/dash');
+    // navigate('/dash');
   }
 
   return (

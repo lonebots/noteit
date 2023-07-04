@@ -1,10 +1,14 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 
 const Protected = ({ isLogged, children }) => {
-    const navigate = useNavigate()
-    if (!isLogged) {
-        navigate('/login')
+
+    useEffect(() => {
+        const isLogged = localStorage.getItem('is-logged')
+    }, [isLogged])
+
+    if (isLogged === false) {
+        return <Navigate to='/login' />
     } else {
         return children;
     }

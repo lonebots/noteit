@@ -14,7 +14,7 @@ import url from './API/Url';
 
 function App() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged") || false)
+  const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"))
 
   // header config
   const config = {
@@ -54,11 +54,11 @@ function App() {
       <Nav isLogged={isLogged} setIsLogged={setIsLogged} />
       <div className='main'>
         <Routes>
-          <Route path="/" element={<Home isLogged={isLogged} />} />
+          <Route exact path="/" element={<Home isLogged={isLogged} />} />
           <Route path='/login' element={<Login setIsLogged={setIsLogged} isLogged={isLogged} />} />
           <Route path='/register' element={<Register />} />
           <Route path="/dash" element={<Protected isLogged={isLogged}><Dashboard /></Protected>} />
-          <Route exact path="/note/new" element={<Protected isLogged={isLogged}><AddNote /></Protected>} />
+          <Route path="/note/new" element={<Protected isLogged={isLogged}><AddNote /></Protected>} />
           <Route path="/user/update-note/:id" element={<Protected isLogged={isLogged}><UpdateNote /> </Protected>} />
         </Routes>
       </div>
