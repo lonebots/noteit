@@ -9,7 +9,7 @@ A simple note-taking application built using the MERN stack (MongoDB, Express.js
 
 ## Features
 
-- **Authentication:** Web token abased user authentication.
+- **Authentication:** Web token based user authentication.
 - **Create notes:** Add new notes with a title and content.
 - **View notes:** Read and access all your notes in a simple and organized manner.
 - **Update notes:** Edit and update the content of your existing notes.
@@ -27,7 +27,7 @@ A simple note-taking application built using the MERN stack (MongoDB, Express.js
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/mern-note-taking-app.git`
+1. Clone the repository: `git clone https://github.com/lonebots/noteit.git`
 2. Navigate to the project directory: `cd noteit`
 3. Install the dependencies: `yarn install`
 4. Set up environment variables:
