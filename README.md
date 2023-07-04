@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Production Status](https://img.shields.io/badge/Production-Online-brightgreen.svg)
 
-<img src='./docs//app.webm' alt='app'/>
+![noteit](https://github.com/lonebots/noteit/assets/46082779/321d0484-5467-40e8-b7ee-e748409d0d53)
 
 A simple note-taking application built using the MERN stack (MongoDB, Express.js, React.js, and Node.js). This application allows users to create, read, update, and delete notes, providing a convenient way to organize and manage their thoughts, tasks, and important information. With a clean and intuitive user interface, users can easily add new notes, edit existing ones, and delete notes they no longer need. The MERN Note Taking Application utilizes the power of the MERN stack to deliver a seamless and efficient note-taking experience. Get started and boost your productivity today!
 
