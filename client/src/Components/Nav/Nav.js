@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Nav.css'
 import logo from '../Assets/icon.png'
+import { Link } from 'react-router-dom'
 
 function Nav({ isLogged, setIsLogged }) {
     const navigate = useNavigate()
@@ -16,18 +17,19 @@ function Nav({ isLogged, setIsLogged }) {
         <div className='nav'>
             <div className='center nav-container'>
                 <div className='nav-header'>
-                    <a href='/'><h1> noteit <img src={logo} alt='app-logo' height="60" /></h1></a>
+                    <Link to='/'><h1> noteit <img src={logo} alt='app-logo' height="60" /></h1></Link>
                 </div>
                 <ul className='nav-list'>
                     {isLogged ?
                         <>
-                            <li className='nav-list__item'> <a href='/note/new' className='link nav--link'>New</a></li>
-                            <li className='nav-list__item' onClick={handleLogOut}> <a href='/' className='link nav--link'>LogOut</a></li>
+                            <li className='nav-list__item'> <Link to='/note/new' className='link nav--link'>New</Link></li>
+                            <li className='nav-list__item' onClick={handleLogOut}> <Link to='/' className='link nav--link'>LogOut</Link></li>
                         </>
                         :
                         <>
-                            <li className='nav-list__item'> <a href='/login' className='link nav--link'>Login</a></li>
-                            <li className='nav-list__item register'> <a href='/register' className='link nav--link'>Register</a></li>
+                            <li className='nav-list__item'> <Link to='/login' className='link nav--link'>Login</Link></li>
+                            <li className='nav-list__item register'> <Link to='/register' className='link nav--link'>Register</Link></li>
+
                         </>}
 
                 </ul>
