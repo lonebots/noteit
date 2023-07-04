@@ -4,9 +4,8 @@ import url from '../../API/Url'
 import axios from 'axios'
 import dashImage from '../Assets/dash-note.png'
 
-const Dashboard = () => {
+const Dashboard = ({ setLoading }) => {
     const [notes, setNotes] = useState([])
-
     // header config
     const config = {
         headers: {
@@ -25,15 +24,18 @@ const Dashboard = () => {
 
     // to get all user notes
     useEffect(() => {
+
         const getNotes = async () => {
+            //setLoading(true)
             const res = await getNotesRequest();
             const Notes = res.data.data;
             if (res.data.success) {
                 setNotes(Notes)
+                setLoading(false)
             }
         }
         getNotes()
-    }, [setNotes])
+    }, [])
 
     return (
         <div className='dashboard-container'>

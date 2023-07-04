@@ -4,7 +4,7 @@ import './Note.css'
 import url from '../../API/Url';
 import axios from 'axios';
 
-const UpdateNote = () => {
+const UpdateNote = ({ setLoading }) => {
     const navigate = useNavigate();
     // header config
     const config = {
@@ -53,6 +53,7 @@ const UpdateNote = () => {
                     date: notedata.date.split("T")[0]
 
                 })
+                setLoading(false)
             }
         }
         getNote(id);
@@ -86,7 +87,7 @@ const UpdateNote = () => {
             </div>
             <div className='note-item'>
                 <label htmlFor='content'>Content</label>
-                <textarea data-provide="markdown"  value={note.content} onChange={handleChange} name='content' />
+                <textarea data-provide="markdown" value={note.content} onChange={handleChange} name='content' />
             </div>
 
             <div className='note-item'>

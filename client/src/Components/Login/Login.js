@@ -4,7 +4,8 @@ import baseURL from '../../API/Url.js'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
-const Login = ({ setIsLogged, isLogged }) => {
+const Login = ({ setIsLogged, isLogged, setLoading }) => {
+
     const navigate = useNavigate(); // navigation hook
     const [user, setUser] = useState({
         email: '',
@@ -27,17 +28,20 @@ const Login = ({ setIsLogged, isLogged }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         const { data } = await loginRequest()
         if (data.success) {
             setIsLogged(true)
             alert("Login success")
             localStorage.setItem('access-token', data.accessToken)
             localStorage.setItem('is-logged', true)
+            setLoading(false);
             navigate('/dash')
         }
         else {
             alert("Login failed")
         }
+
     }
 
     return (

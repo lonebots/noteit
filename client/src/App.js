@@ -11,10 +11,12 @@ import UpdateNote from './Components/Notes/UpdateNote';
 import Protected from './Components/Utils/Protected';
 import axios from 'axios';
 import url from './API/Url';
+import Loader from './Components/Loader/Loader';
 
 function App() {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"))
+  const [loading, setLoading] = useState(false)
 
   // header config
   const config = {
@@ -34,6 +36,7 @@ function App() {
 
   // to check if user is logged in 
   useEffect(() => {
+    setLoading(true)
     const checkLogin = async () => {
       const { data } = await verifyrequest();
       if (data.success && !data.expired) {
@@ -43,6 +46,7 @@ function App() {
         localStorage.removeItem('access-token')
         setIsLogged(false)
         localStorage.setItem('is-logged', false)
+        setLoading(false)
       }
     }
     checkLogin();
@@ -50,18 +54,24 @@ function App() {
 
   return (
     <div className="App">
-
-      <Nav isLogged={isLogged} setIsLogged={setIsLogged} />
-      <div className='main'>
-        <Routes>
-          <Route exact path="/" element={<Home isLogged={isLogged} />} />
-          <Route path='/login' element={<Login setIsLogged={setIsLogged} isLogged={isLogged} />} />
-          <Route path='/register' element={<Register />} />
-          <Route path="/dash" element={<Protected isLogged={isLogged}><Dashboard /></Protected>} />
-          <Route path="/note/new" element={<Protected isLogged={isLogged}><AddNote /></Protected>} />
-          <Route path="/user/update-note/:id" element={<Protected isLogged={isLogged}><UpdateNote /> </Protected>} />
-        </Routes>
-      </div>
+      {
+        loading ?
+          <Loader />
+          :
+          <>
+            <Nav isLogged={isLogged} setIsLogged={setIsLogged} />
+            <div className='main'>
+              <Routes>
+                <Route exact path="/" element={<Home isLogged={isLogged} />} />
+                <Route path='/login' element={<Login setIsLogged={setIsLogged} isLogged={isLogged} setLoading={setLoading} />} />
+                <Route path='/register' element={<Register />} />
+                <Route path="/dash" element={<Protected isLogged={isLogged}><Dashboard setLoading={setLoading} /></Protected>} />
+                <Route path="/note/new" element={<Protected isLogged={isLogged}><AddNote setLoading={setLoading} /></Protected>} />
+                <Route path="/user/update-note/:id" element={<Protected isLogged={isLogged}><UpdateNote setLoading={setLoading} /> </Protected>} />
+              </Routes>
+            </div>
+          </>
+      }
     </div>
   );
 }

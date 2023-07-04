@@ -4,8 +4,12 @@ import './Note.css'
 import url from '../../API/Url';
 import axios from 'axios';
 
-function AddNote() {
+const AddNote = ({ setLoading }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(false)
+  }, [])
 
   // get default date (yyyy-mm-dd)
   const today = new Date();
