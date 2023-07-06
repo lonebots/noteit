@@ -49,8 +49,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-
+    <div className='App'>
       <Nav isLogged={isLogged} setIsLogged={setIsLogged} />
       <div className='main'>
         <Routes>
