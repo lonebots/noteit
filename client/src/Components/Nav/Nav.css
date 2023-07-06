@@ -1,20 +1,30 @@
 .nav {
+  display: flex;
+  justify-content: center;
+  font-size: 0.8remI;
+  text-transform: lowercase;
   background-color: #1abc9c;
+  padding: 1.5rem 0em;
+  min-height: 10%;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
 }
 
 .nav-header h1 {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 3rem;
-  color: #fff;
+  gap: 0.5rem;
+  color: #eee;
 }
 
 .nav-container {
-  max-width: 800px;
-  padding: 1.5rem 0em;
-  align-items: center;
+  width: 400px;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav-list {
@@ -24,30 +34,40 @@
 }
 
 .nav-list__item {
-  font-size: 0.9rem;
   list-style-type: none;
-  background-color: white;
-  min-width: 100px;
+  background-color: #eee;
+  min-width: 80px;
   border-radius: 2rem;
-  margin-left: 1em;
+  margin-left: 0.4rem;
   text-align: center;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 .nav-list__item:hover {
-  background-color: #000000;
+  background-color: #111;
 }
 
 .nav--link {
-  padding: 0.6rem 1.2em;
+  padding: 0.4rem 0rem;
   display: block;
   width: 100%;
+  color: #eee;
 }
 
-.register {
-  background-color: #ffffff;
+@media screen and (min-width: 576px) {
+  .nav-container {
+    width: 500px;
+  }
 }
 
-.register:hover {
-  background-color: #000;
+@media screen and (min-width: 768px) {
+  .nav-container {
+    width: 600px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .nav-container {
+    width: 800px;
+  }
 }

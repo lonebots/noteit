@@ -3,6 +3,7 @@ import Note from '../Notes/Note'
 import url from '../../API/Url'
 import axios from 'axios'
 import dashImage from '../Assets/dash-note.png'
+import './Dashboard.css'
 
 const Dashboard = () => {
     const [notes, setNotes] = useState([])
@@ -43,7 +44,7 @@ const Dashboard = () => {
                     )
                 })
                 :
-                <img src={dashImage} alt='add-new-note' height="190" width="190" />
+                <img className='no-note' src={dashImage} alt='add-new-note' height="150" width="150" />
             }
         </div>
     )

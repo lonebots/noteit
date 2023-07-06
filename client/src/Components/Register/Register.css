@@ -1,16 +1,15 @@
 form {
-  margin: 0 auto;
+  margin: 5em auto;
   padding: 30px;
   width: 500px;
   height: auto;
-  overflow: hidden;
   background: white;
   border-radius: 10px;
   text-align: center;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   padding-bottom: 3rem;
   color: #1abc9c;
 }
@@ -22,6 +21,8 @@ form input {
 
 form input {
   margin: 15px 0;
+  font-family: inherit;
+  font-size: 0.7rem;
   padding: 15px 10px;
   width: 100%;
   outline: none;
@@ -59,8 +60,8 @@ form input:focus {
   transition: 0.2s ease all;
 }
 
-.btn:hover{
-    background-color: #33ccad;
+.btn:hover {
+  background-color: #33ccad;
 }
 
 input[type="submit"]:hover {
@@ -72,7 +73,7 @@ input[type="submit"]:active {
 }
 
 .form__subtext {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #686868;
   text-align: left;
   margin-top: 3rem;

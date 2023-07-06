@@ -15,20 +15,20 @@ function Nav({ isLogged, setIsLogged }) {
 
     return (
         <div className='nav'>
-            <div className='center nav-container'>
+            <div className='nav-container'>
                 <div className='nav-header'>
-                    <Link to='/'><h1> noteit <img src={logo} alt='app-logo' height="60" /></h1></Link>
+                    <Link to='/'><h1> noteit <img className='logo' src={logo} alt='app-logo' height="60" /></h1></Link>
                 </div>
                 <ul className='nav-list'>
                     {isLogged ?
                         <>
-                            <li className='nav-list__item'> <Link to='/note/new' className='link nav--link'>New</Link></li>
+                            <li className='nav-list__item'> <Link to='/note/new' className='nav--link'>New</Link></li>
                             <li className='nav-list__item' onClick={handleLogOut}> <Link to='/' className='link nav--link'>LogOut</Link></li>
                         </>
                         :
                         <>
-                            <li className='nav-list__item'> <Link to='/login' className='link nav--link'>Login</Link></li>
-                            <li className='nav-list__item register'> <Link to='/register' className='link nav--link'>Register</Link></li>
+                            <li className='nav-list__item'> <Link to='/login' className='nav--link'>Login</Link></li>
+                            <li className='nav-list__item'> <Link to='/register' className='link nav--link'>Register</Link></li>
 
                         </>}
 

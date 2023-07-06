@@ -9,8 +9,8 @@ const Home = ({ isLogged }) => {
     }
     else {
         return (< div className='home-container' >
-            <h1 className='hero'>Your Ultimate <span>Note-Making  </span> Companion!</h1>
-            <img src={noteAnimate} alt='animate' height="400" />
+            <h1 className='hero'>Your Ultimate <span className=''>Note Making </span> Companion!</h1>
+            <img className='hero-animation' src={noteAnimate} alt='animate' height="400" />
         </div >)
     }
 }
