@@ -77,7 +77,7 @@ const UpdateNote = () => {
         }
     }
     return (
-        <div className='add-note-container'>
+        <div className='note-container'>
             <h2>Update Note</h2>
             <div className='note-item'>
                 <label htmlFor='title' >Title</label>
@@ -86,7 +86,7 @@ const UpdateNote = () => {
             </div>
             <div className='note-item'>
                 <label htmlFor='content'>Content</label>
-                <textarea data-provide="markdown"  value={note.content} onChange={handleChange} name='content' />
+                <textarea data-provide="markdown" value={note.content} onChange={handleChange} name='content' />
             </div>
 
             <div className='note-item'>

@@ -57,7 +57,7 @@ function AddNote() {
   }
 
   return (
-    <div className='add-note-container'>
+    <div className='note-container'>
       <h2>Add Note</h2>
       <div className='note-item'>
         <label htmlFor='title' >Title</label>

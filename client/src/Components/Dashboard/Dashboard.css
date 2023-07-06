@@ -1,11 +1,13 @@
 .dashboard-container {
+  margin-top: 2rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
-.no-note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.dashboard-container .no-note {
+  margin-top: 20%;
+  align-self: center;
+  justify-self: center;
 }
